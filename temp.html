@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <input type="number" id="temperature" placeholder="Enter temperature...">
+    <select id="unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      const temperatureInput = document.getElementById('temperature').value;
+      const unit = document.getElementById('unit').value;
+      let convertedTemperature;
+
+      if (isNaN(temperatureInput)) {
+        alert('Please enter a valid number for temperature!');
+        return;
+      }
+
+      const temperature = parseFloat(temperatureInput);
+
+      switch (unit) {
+        case 'celsius':
+          convertedTemperature = (temperature * 9 / 5) + 32;
+          document.getElementById('result').innerText = `Converted temperature: ${convertedTemperature.toFixed(2)} °F`;
+          break;
+        case 'fahrenheit':
+          convertedTemperature = (temperature - 32) * 5 / 9;
+          document.getElementById('result').innerText = `Converted temperature: ${convertedTemperature.toFixed(2)} °C`;
+          break;
+        case 'kelvin':
+          convertedTemperature = temperature + 273.15;
+          document.getElementById('result').innerText = `Converted temperature: ${convertedTemperature.toFixed(2)} K`;
+          break;
+        default:
+          break;
+      }
+    }
+  </script>
+</body>
+</html>
